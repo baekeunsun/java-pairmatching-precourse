@@ -1,7 +1,13 @@
 package pairmatching;
 
+import pairmatching.domain.Game;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 구현 진행
+        try {
+            new Game();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 }
