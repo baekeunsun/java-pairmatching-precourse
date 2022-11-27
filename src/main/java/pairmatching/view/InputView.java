@@ -7,7 +7,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
-    public static String selectFeatures() {
+    public static String selectFeaturesView() {
         System.out.println("기능을 선택하세요.\n" +
                 "1. 페어 매칭\n" +
                 "2. 페어 조회\n" +
@@ -16,7 +16,7 @@ public class InputView {
         return readLine();
     }
 
-    public static List<String> pairMatching() {
+    public static List<String> pairMatchingView() {
         System.out.println("#############################################\n" +
                 "과정: 백엔드 | 프론트엔드\n" +
                 "미션:\n" +
