@@ -22,7 +22,7 @@ public class PairMatching {
         this.shuffledFrontendCrew = Randoms.shuffle(frontendCrew);
     }
     public void match(String endType, String levelType, String missionType) {
-        List<String> shuffledCrew = shuffledBackendCrew;
+        List<String> shuffledCrew = crewType(endType);
         List<List<String>> resultCrew = new ArrayList<>();
 
         System.out.println(shuffledCrew);
@@ -31,6 +31,7 @@ public class PairMatching {
             System.out.println("짝수");
             resultCrew = matchEven(shuffledCrew);
         }
+
         printMatching(resultCrew);
     }
     private List<List<String>> matchEven(List<String> shuffledCrew) {
@@ -41,6 +42,14 @@ public class PairMatching {
         }
         return resultCrew;
     }
+
+    private List<String> crewType(String endType) {
+        if (endType.equals("백엔드")) {
+            return shuffledBackendCrew;
+        }
+        return shuffledFrontendCrew;
+    }
+
     public void printMatching(List<List<String>> resultCrew) {
         for (int i=0; i <resultCrew.size(); i++) {
             String str = resultCrew.get(i).toString();
