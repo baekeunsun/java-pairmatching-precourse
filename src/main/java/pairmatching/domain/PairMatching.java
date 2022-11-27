@@ -15,19 +15,14 @@ public class PairMatching {
     public static List<String> shuffledBackendCrew = new ArrayList<>();
     public static List<String> shuffledFrontendCrew = new ArrayList<>();
 
-    public PairMatching() throws IOException {
-        List<String> backendCrew = MakeNameList.makeBackendList();
-        this.shuffledBackendCrew = Randoms.shuffle(backendCrew);
-
-        List<String> frontendCrew = MakeNameList.makeFrontendList();
-        this.shuffledFrontendCrew = Randoms.shuffle(frontendCrew);
+    public void match(String endType, String levelType, String missionType) throws IOException {
+        List<String> shuffledCrew = crewType(endType);  // endType점검, 셔플
+        List<List<String>> resultCrew = Numtype(shuffledCrew);  // 짝홀점검
+        printMatching(resultCrew);  // 출력
     }
-    public void match(String endType, String levelType, String missionType) {
-        List<String> shuffledCrew = crewType(endType);
+    
+    private List<List<String>> Numtype(List<String> shuffledCrew) {
         List<List<String>> resultCrew = new ArrayList<>();
-
-        System.out.println(shuffledCrew);
-
         if (shuffledCrew.size()%2 == 0) {
             System.out.println("짝수");
             resultCrew = matchEven(shuffledCrew);
@@ -36,8 +31,9 @@ public class PairMatching {
             System.out.println("홀수");
             resultCrew = matchOdd(shuffledCrew);
         }
-        printMatching(resultCrew);
+        return resultCrew;
     }
+
     private List<List<String>> matchEven(List<String> shuffledCrew) {
         List<List<String>> resultCrew = new ArrayList<>();
         for (int i=0; i < shuffledCrew.size(); i +=2) {
@@ -57,10 +53,14 @@ public class PairMatching {
         return resultCrew;
     }
 
-    private List<String> crewType(String endType) {
+    private List<String> crewType(String endType) throws IOException {
         if (endType.equals("백엔드")) {
+            List<String> backendCrew = MakeNameList.makeBackendList();
+            this.shuffledBackendCrew = Randoms.shuffle(backendCrew);
             return shuffledBackendCrew;
         }
+        List<String> frontendCrew = MakeNameList.makeFrontendList();
+        this.shuffledFrontendCrew = Randoms.shuffle(frontendCrew);
         return shuffledFrontendCrew;
     }
 
