@@ -31,6 +31,11 @@ JDK 11
     - [] 페어 매칭 결과 출력
       - [] 출력되는 페어의 순서는 camp.nextstep.edu.missionutils.Randoms의 shuffle 메서드의 결과 순서로 정렬
 
+- [] 사전 정보 enum
+  - [] Course
+  - [] Level
+  - [] Crew
+
 ## 고려사항
 - [] 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러옴
 - [] src/main/resources/backend-crew.md과 src/main/resources/frontend-crew.md 파일을 이용
