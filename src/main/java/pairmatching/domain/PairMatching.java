@@ -31,7 +31,10 @@ public class PairMatching {
             System.out.println("짝수");
             resultCrew = matchEven(shuffledCrew);
         }
-
+        if (shuffledCrew.size()%2 == 1) {
+            System.out.println("홀수");
+            resultCrew = matchOdd(shuffledCrew);
+        }
         printMatching(resultCrew);
     }
     private List<List<String>> matchEven(List<String> shuffledCrew) {
@@ -40,6 +43,16 @@ public class PairMatching {
             System.out.println(i);
             resultCrew.add(Arrays.asList(shuffledCrew.get(i),shuffledCrew.get(i+1)));
         }
+        return resultCrew;
+    }
+
+    private List<List<String>> matchOdd(List<String> shuffledCrew) {
+        List<List<String>> resultCrew = new ArrayList<>();
+        for (int i=0; i < shuffledCrew.size()-3; i +=2) {
+            System.out.println(i);
+            resultCrew.add(Arrays.asList(shuffledCrew.get(i),shuffledCrew.get(i+1)));
+        }
+        resultCrew.add(Arrays.asList(shuffledCrew.get(shuffledCrew.size()-3),shuffledCrew.get(shuffledCrew.size()-2),shuffledCrew.get(shuffledCrew.size()-1)));
         return resultCrew;
     }
 
