@@ -1,4 +1,6 @@
-package pairmatching.utils;
+package pairmatching.domain;
+
+import pairmatching.utils.Course;
 
 public class Crew {
     private Course course;
