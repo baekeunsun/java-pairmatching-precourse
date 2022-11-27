@@ -32,9 +32,9 @@ JDK 11
       - [] 출력되는 페어의 순서는 camp.nextstep.edu.missionutils.Randoms의 shuffle 메서드의 결과 순서로 정렬
 
 - [] 사전 정보 enum
-  - [] Course
-  - [] Level
-  - [] Crew
+  - [x] Course
+  - [x] Level
+  - [x] Crew
 
 ## 고려사항
 - [] 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러옴
