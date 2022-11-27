@@ -42,10 +42,11 @@ public class Game {
             }
 
             if (feature.equals("3")) {  // 페어 초기화
-
+                pairList = new ArrayList<>();
             }
 
             if (feature.equals("Q")) {  // 종료
+
             }
 
         }
