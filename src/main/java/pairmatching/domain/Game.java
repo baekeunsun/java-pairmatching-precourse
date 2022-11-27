@@ -39,6 +39,7 @@ public class Game {
                         break;
                     };
                 }
+                System.out.println("[ERROR] 매칭 이력이 없습니다.");
             }
 
             if (feature.equals("3")) {  // 페어 초기화
