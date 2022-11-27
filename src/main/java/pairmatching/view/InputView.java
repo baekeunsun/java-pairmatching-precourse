@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import pairmatching.utils.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +15,15 @@ public class InputView {
                 "2. 페어 조회\n" +
                 "3. 페어 초기화\n" +
                 "Q. 종료");
-        return readLine();
+        return is123Q();
+    }
+
+    private static String is123Q() {
+        String input = readLine();
+        if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("Q")) {
+            return input;
+        }
+        throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_123Q.getMessage());
     }
 
     public static List<String> pairMatchingView() {
@@ -27,7 +37,7 @@ public class InputView {
                 "  - 레벨5: \n" +
                 "############################################\n" +
                 "과정, 레벨, 미션을 선택하세요.\n" +
-                "ex) 백엔드, 레벨1, 자동차경주");
+                "ex) 백엔드, 레벨1, 자동차경주 \n");
         List<String> input = Arrays.asList(readLine().split(","));
         return input;
     }
@@ -43,7 +53,7 @@ public class InputView {
                 "  - 레벨5: \n" +
                 "############################################\n" +
                 "과정, 레벨, 미션을 선택하세요.\n" +
-                "ex) 백엔드, 레벨1, 자동차경주");
+                "ex) 백엔드, 레벨1, 자동차경주 \n");
         List<String> input = Arrays.asList(readLine().split(","));
         return input;
     }

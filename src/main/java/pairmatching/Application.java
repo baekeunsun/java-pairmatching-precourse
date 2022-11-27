@@ -7,7 +7,7 @@ public class Application {
         try {
             new Game();
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println("[ERROR] "+e.getMessage());
         }
     }
 }
