@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.view.OutputView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,12 +65,6 @@ public class PairMatching {
     }
 
     public void printMatching(List<List<String>> resultCrew) {
-        for (int i=0; i <resultCrew.size(); i++) {
-            String str = resultCrew.get(i).toString();
-            str = str.replace(","," :");
-            str = str.replace("[","");
-            str = str.replace("]","");
-            System.out.println(str);
-        }
+        OutputView.ResultPairMatchingView(resultCrew);
     }
 }
