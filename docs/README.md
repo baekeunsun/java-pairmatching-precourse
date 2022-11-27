@@ -14,7 +14,7 @@ JDK 11
     - [x] 크루들의 이름 목록 List<String>
       - [x] 프론트앤드 crew 저장
       - [x] 백앤드 crew 저장
-    - [] 크루 목록의 순서를 랜덤, `camp.nextstep.edu.missionutils.Randoms`의 shuffle 메서드를 활용
+    - [x] 크루 목록의 순서를 랜덤, `camp.nextstep.edu.missionutils.Randoms`의 shuffle 메서드를 활용
   - [] 함께 수행할 페어를 두명씩 매칭
     - [] 랜덤으로 섞인 페어 목록에서 페어 매칭을 할 때 앞에서부터 순서대로 두명씩
     - [] 홀수인 경우 한 페어는 3인 : 마지막 남은 크루는 마지막 페어에 포함
