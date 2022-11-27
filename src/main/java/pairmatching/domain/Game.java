@@ -46,7 +46,7 @@ public class Game {
             }
 
             if (feature.equals("Q")) {  // 종료
-
+                break;
             }
 
         }
