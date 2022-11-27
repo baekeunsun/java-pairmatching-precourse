@@ -3,7 +3,6 @@ package pairmatching.view;
 import pairmatching.utils.ErrorMessage;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;

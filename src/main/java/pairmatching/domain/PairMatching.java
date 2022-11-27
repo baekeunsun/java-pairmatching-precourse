@@ -6,29 +6,26 @@ import pairmatching.view.OutputView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static pairmatching.utils.Course.BACKEND;
 
 public class PairMatching {
     public static List<String> shuffledBackendCrew = new ArrayList<>();
     public static List<String> shuffledFrontendCrew = new ArrayList<>();
 
-    public void match(String endType, String levelType, String missionType) throws IOException {
+    public List<List<String>> match(String endType, String levelType, String missionType) throws IOException {
         List<String> shuffledCrew = crewType(endType);  // endType점검, 셔플
         List<List<String>> resultCrew = Numtype(shuffledCrew);  // 짝홀점검
         printMatching(resultCrew);  // 출력
+        return resultCrew;
     }
-    
+
     private List<List<String>> Numtype(List<String> shuffledCrew) {
         List<List<String>> resultCrew = new ArrayList<>();
         if (shuffledCrew.size()%2 == 0) {
-            System.out.println("짝수");
             resultCrew = matchEven(shuffledCrew);
         }
         if (shuffledCrew.size()%2 == 1) {
-            System.out.println("홀수");
             resultCrew = matchOdd(shuffledCrew);
         }
         return resultCrew;
@@ -37,7 +34,6 @@ public class PairMatching {
     private List<List<String>> matchEven(List<String> shuffledCrew) {
         List<List<String>> resultCrew = new ArrayList<>();
         for (int i=0; i < shuffledCrew.size(); i +=2) {
-            System.out.println(i);
             resultCrew.add(Arrays.asList(shuffledCrew.get(i),shuffledCrew.get(i+1)));
         }
         return resultCrew;
