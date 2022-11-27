@@ -33,6 +33,11 @@ JDK 11
     - [x] 입력 문구 출력
     - [] 페어 매칭 결과 출력
       - [] 출력되는 페어의 순서는 camp.nextstep.edu.missionutils.Randoms의 shuffle 메서드의 결과 순서로 정렬
+  - [] 페어 조회
+    - [] 입력 문구 출력
+    - [] 페어 조회 결과 출력
+  - [] 페어 초기화
+  - [] 종료
 
 - [] 사전 정보 enum
   - [x] Course
