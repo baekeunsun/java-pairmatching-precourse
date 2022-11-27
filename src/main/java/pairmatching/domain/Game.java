@@ -6,7 +6,6 @@ import pairmatching.view.OutputView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static pairmatching.view.InputView.inquiryMacthingView;
@@ -22,7 +21,7 @@ public class Game {
                 pairMatching(pairList);
             }
             if (feature.equals("2")) {  // 페어 조회
-                inquiryMacthing(pairList);
+                inquiryMatching(pairList);
             }
             if (feature.equals("3")) {  // 페어 초기화
                 pairList = new ArrayList<>();
@@ -45,15 +44,14 @@ public class Game {
         }
     }
 
-    private void inquiryMacthing(List<Pair> pairList) {
+    private void inquiryMatching(List<Pair> pairList) {
         List<String> input = inquiryMacthingView();
         for (int i = 0; i<pairList.size(); i++) {
             List<List<String>> tmpList = pairList.get(i).findCrews(Course.BACKEND,input.get(1), input.get(2));
             if (tmpList!=null) {
                 OutputView.ResultPairMatchingView(tmpList);
-                break;
             };
         }
-        System.out.println("[ERROR] 매칭 이력이 없습니다.");
+        // System.out.println("[ERROR] 매칭 이력이 없습니다.");
     }
 }
