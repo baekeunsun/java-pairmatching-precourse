@@ -12,5 +12,6 @@ public class OutputView {
             str = str.replace("]","");
             System.out.println(str);
         }
+        System.out.println("");
     }
 }

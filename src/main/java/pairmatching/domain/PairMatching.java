@@ -1,7 +1,6 @@
 package pairmatching.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import pairmatching.view.OutputView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ public class PairMatching {
     public List<List<String>> match(String endType, String levelType, String missionType) throws IOException {
         List<String> shuffledCrew = crewType(endType);  // endType점검, 셔플
         List<List<String>> resultCrew = Numtype(shuffledCrew);  // 짝홀점검
-        printMatching(resultCrew);  // 출력
         return resultCrew;
     }
 
@@ -58,9 +56,5 @@ public class PairMatching {
         List<String> frontendCrew = MakeNameList.makeFrontendList();
         this.shuffledFrontendCrew = Randoms.shuffle(frontendCrew);
         return shuffledFrontendCrew;
-    }
-
-    public void printMatching(List<List<String>> resultCrew) {
-        OutputView.ResultPairMatchingView(resultCrew);
     }
 }

@@ -1,11 +1,11 @@
 package pairmatching;
 
-import pairmatching.domain.Game;
+import pairmatching.controller.MatchingController;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            new Game();
+            new MatchingController().run();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] "+e.getMessage());
         }
