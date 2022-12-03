@@ -2,8 +2,17 @@ package pairmatching;
 
 import pairmatching.controller.MainController;
 
+import java.io.IOException;
+
 public class Application {
     public static void main(String[] args) {
-        new MainController().run();
+        try {
+            new MainController().run();
+        } catch (IllegalArgumentException e) {
+
+        } catch (IOException e) {
+
+        }
+
     }
 }

@@ -1,11 +1,17 @@
 package pairmatching.controller;
 
+import pairmatching.service.SetCrews;
 import pairmatching.view.InputView;
 
+import java.io.IOException;
 import java.util.List;
 
 
 public class MainController {
+
+    public MainController() throws IOException {
+        new SetCrews();
+    }
 
     public void run(){
         boolean gameRun = true;
