@@ -28,4 +28,14 @@ public class Crew {
         }
     }
 
+    public boolean checkPair(Level level, Crew crew) {
+        if (this.pairCrew.get(level) == null) {
+            return true;
+        }
+        if (this.pairCrew.get(level).equals(crew)) {
+            return false;
+        }
+        return true;
+    }
+
 }
