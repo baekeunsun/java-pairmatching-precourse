@@ -38,4 +38,7 @@ public class Crew {
         return true;
     }
 
+    public static void removePair(Crew crew) {
+        pairCrew.remove(crew);
+    }
 }

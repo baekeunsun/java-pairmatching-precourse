@@ -31,6 +31,12 @@ public class InputView {
         return checkInput3(input);
     }
 
+    public static String retryMatchingView() {
+        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+                "네 | 아니오");
+        return readLine();
+    }
+
     private static List<String> checkInput3(List<String> input) {
         if (input.size() != 3) {
             throw new IllegalArgumentException();
