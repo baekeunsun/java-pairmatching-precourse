@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import pairmatching.utils.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class InputView {
 
     private static List<String> checkInput3(List<String> input) {
         if (input.size() != 3) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_3.getMessage());
         }
         return input;
     }

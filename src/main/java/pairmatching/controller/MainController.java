@@ -50,7 +50,7 @@ public class MainController {
         if (input.equals("Q")) {  // 종료
             return false;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_123Q.getMessage());
     }
 
     private void pairMatching() {

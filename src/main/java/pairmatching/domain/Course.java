@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import pairmatching.utils.ErrorMessage;
+
 import java.util.Arrays;
 
 public enum Course {
@@ -16,6 +18,6 @@ public enum Course {
         return Arrays.stream(values())
                 .filter(l -> input.equals(l.name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지않는 코스입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_COURSE.getMessage()));
     }
 }
