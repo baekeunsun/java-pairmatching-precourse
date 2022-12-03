@@ -2,6 +2,7 @@ package pairmatching.service;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
+import pairmatching.utils.ErrorMessage;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -41,4 +42,26 @@ public class SetCrews {
         }
         reader.close();
     }
+
+    public static Crew returnCrew(Course course, String name) {
+        List<Crew> crew = findType(course);
+        for (int i=0; i < crew.size(); i++) {
+            if (crew.get(i).getName().equals(name)) {
+                return crew.get(i);
+            }
+        }
+        throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_CREW.getMessage());
+    }
+
+    private static List<Crew> findType(Course course) {
+        List<Crew> crew = new ArrayList<>();
+        if (course.equals(Course.BACKEND)) {
+            crew = backendCrew;
+        }
+        if (course.equals(Course.FRONTEND)) {
+            crew = frontendCrew;
+        }
+        return crew;
+    }
+
 }

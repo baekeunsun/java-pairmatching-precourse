@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.domain.Course;
+import pairmatching.domain.Level;
 import pairmatching.service.PairMatch;
 import pairmatching.service.SetCrews;
 import pairmatching.view.InputView;
@@ -43,6 +44,7 @@ public class MainController {
     private void pairMatching() throws IOException {
         List<String> input = InputView.pairMatchingView();
         Course course = Course.getName(input.get(0));
-        List<List<String>> pairResult = new PairMatch().pairmatch(course);
+        Level level = Level.getName(input.get(1));
+        List<List<String>> pairResult = new PairMatch().pairmatch(course,level);
     }
 }
