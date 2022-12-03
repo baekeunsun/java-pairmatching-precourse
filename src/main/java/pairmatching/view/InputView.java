@@ -1,0 +1,64 @@
+package pairmatching.view;
+
+import pairmatching.utils.ErrorMessage;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
+public class InputView {
+    public static String selectFeaturesView() {
+        System.out.println("기능을 선택하세요.\n" +
+                "1. 페어 매칭\n" +
+                "2. 페어 조회\n" +
+                "3. 페어 초기화\n" +
+                "Q. 종료");
+        return readLine();
+    }
+
+    public static List<String> pairMatchingView() {
+        System.out.println("#############################################\n" +
+                "과정: 백엔드 | 프론트엔드\n" +
+                "미션:\n" +
+                "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임\n" +
+                "  - 레벨2: 장바구니 | 결제 | 지하철노선도\n" +
+                "  - 레벨3: \n" +
+                "  - 레벨4: 성능개선 | 배포\n" +
+                "  - 레벨5: \n" +
+                "############################################\n" +
+                "과정, 레벨, 미션을 선택하세요.\n" +
+                "ex) 백엔드, 레벨1, 자동차경주 \n");
+        List<String> input = Arrays.asList(readLine().split(", "));
+        return checkInput3(input);
+    }
+
+    public static String retryMatchingView() {
+        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+                "네 | 아니오");
+        return readLine();
+    }
+
+    public static List<String> inquiryMacthingView() {
+        System.out.println("############################################\n" +
+                "과정: 백엔드 | 프론트엔드\n" +
+                "미션:\n" +
+                "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임\n" +
+                "  - 레벨2: 장바구니 | 결제 | 지하철노선도\n" +
+                "  - 레벨3: \n" +
+                "  - 레벨4: 성능개선 | 배포\n" +
+                "  - 레벨5: \n" +
+                "############################################\n" +
+                "과정, 레벨, 미션을 선택하세요.\n" +
+                "ex) 백엔드, 레벨1, 자동차경주 \n");
+        List<String> input = Arrays.asList(readLine().split(", "));
+        return checkInput3(input);
+    }
+
+    private static List<String> checkInput3(List<String> input) {
+        if (input.size() != 3) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_3.getMessage());
+        }
+        return input;
+    }
+}
