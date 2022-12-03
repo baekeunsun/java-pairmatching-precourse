@@ -25,11 +25,15 @@ public class MainController {
         new SetCrews();
     }
 
-    public void run() throws IOException {
+    public void run(){
         boolean gameRun = true;
         while (gameRun) {
-            String input = InputView.selectFeaturesView();
-            gameRun = selectMenu(input);
+            try {
+                String input = InputView.selectFeaturesView();
+                gameRun = selectMenu(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
         }
     }
 

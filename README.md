@@ -64,7 +64,7 @@ JDK 11
 - [] src/main/resources/backend-crew.md과 src/main/resources/frontend-crew.md 파일을 이용
 - [] 두 파일의 내용은 수정이 가능하다. 수정 시 크루들의 이름은 중복될 수 없음
 - [] 파일 입출력 방법은 자바 파일 읽기나 자바 파일 입출력과 같은 키워드로 구글링해서 찾을 수 있음
-- [] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, [ERROR]로 시작하는 에러 메시지를 출력 후 해당 부분부터 다시 입력을 받음
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, [ERROR]로 시작하는 에러 메시지를 출력 후 해당 부분부터 다시 입력을 받음
 - [] 프로그램을 실행하는 시작점은 Application의 main()
 - [] 자바 코드 컨벤션을 지키면서 프로그래밍
 - [] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용
