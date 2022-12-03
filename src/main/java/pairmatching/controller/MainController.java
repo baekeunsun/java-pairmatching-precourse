@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import pairmatching.domain.Course;
+import pairmatching.service.PairMatch;
 import pairmatching.service.SetCrews;
 import pairmatching.view.InputView;
 
@@ -13,7 +15,7 @@ public class MainController {
         new SetCrews();
     }
 
-    public void run(){
+    public void run() throws IOException {
         boolean gameRun = true;
         while (gameRun) {
             String input = InputView.selectFeaturesView();
@@ -21,7 +23,7 @@ public class MainController {
         }
     }
 
-    public boolean selectMenu(String input) {
+    public boolean selectMenu(String input) throws IOException {
         if (input.equals("1")) {  // 페어 매칭
             pairMatching();
             return true;
@@ -38,7 +40,9 @@ public class MainController {
         throw new IllegalArgumentException();
     }
 
-    private void pairMatching(){
+    private void pairMatching() throws IOException {
         List<String> input = InputView.pairMatchingView();
+        Course course = Course.getName(input.get(0));
+        List<List<String>> pairResult = new PairMatch().pairmatch(course);
     }
 }
