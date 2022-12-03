@@ -33,12 +33,13 @@ public class MainController {
         }
     }
 
-    public boolean selectMenu(String input) throws IOException {
+    public boolean selectMenu(String input) {
         if (input.equals("1")) {  // 페어 매칭
             pairMatching();
             return true;
         }
         if (input.equals("2")) {  // 페어 조회
+            inquiryMatching();
             return true;
         }
         if (input.equals("3")) {  // 페어 초기화
@@ -50,7 +51,7 @@ public class MainController {
         throw new IllegalArgumentException();
     }
 
-    private void pairMatching() throws IOException {
+    private void pairMatching() {
         List<String> input = InputView.pairMatchingView();
         Course course = Course.getName(input.get(0));
         Level level = Level.getName(input.get(1));
@@ -102,5 +103,20 @@ public class MainController {
                 crews[i].removePair(crews[j]);
             }
         }
+    }
+
+    private void inquiryMatching() {
+        List<String> input = InputView.inquiryMacthingView();
+        Course course = Course.getName(input.get(0));
+        Level level = Level.getName(input.get(1));
+        String mission = level.getMission(input.get(2));
+
+        for (int i = 0; i<pairList.size(); i++) {
+            List<List<String>> findPairList = pairList.get(i).getCrews(course, level, mission);
+            if (findPairList!=null) {
+                OutputView.ResultPairMatchingView(findPairList);
+            }
+        }
+        throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_PAIR.getMessage());
     }
 }
