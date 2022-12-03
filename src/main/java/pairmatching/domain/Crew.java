@@ -41,4 +41,8 @@ public class Crew {
     public static void removePair(Crew crew) {
         pairCrew.remove(crew);
     }
+
+    public static void initializaePair() {
+        pairCrew.clear();
+    }
 }

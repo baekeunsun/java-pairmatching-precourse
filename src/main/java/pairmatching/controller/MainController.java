@@ -43,6 +43,8 @@ public class MainController {
             return true;
         }
         if (input.equals("3")) {  // 페어 초기화
+            pairList.clear();
+            Crew.initializaePair();
             return true;
         }
         if (input.equals("Q")) {  // 종료
