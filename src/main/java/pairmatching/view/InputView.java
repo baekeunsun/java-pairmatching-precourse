@@ -26,8 +26,8 @@ public class InputView {
                 "############################################\n" +
                 "과정, 레벨, 미션을 선택하세요.\n" +
                 "ex) 백엔드, 레벨1, 자동차경주 \n");
-        List<String> input = Arrays.asList(readLine().split(","));
-        return input;
+        List<String> input = Arrays.asList(readLine().split(", "));
+        return checkInput3(input);
     }
 
     public static List<String> inquiryMacthingView() {
@@ -42,13 +42,20 @@ public class InputView {
                 "############################################\n" +
                 "과정, 레벨, 미션을 선택하세요.\n" +
                 "ex) 백엔드, 레벨1, 자동차경주 \n");
-        List<String> input = Arrays.asList(readLine().split(","));
-        return input;
+        List<String> input = Arrays.asList(readLine().split(", "));
+        return checkInput3(input);
     }
 
     public static String retryMatchingView() {
         System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
                 "네 | 아니오");
         return readLine();
+    }
+
+    private static List<String> checkInput3(List<String> input) {
+        if (input.size() != 3) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 }

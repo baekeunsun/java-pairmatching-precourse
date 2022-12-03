@@ -1,8 +1,11 @@
 package pairmatching.controller;
 
+import pairmatching.domain.Crew;
+import pairmatching.domain.Level;
 import pairmatching.domain.Pair;
-import pairmatching.domain.PairMatching;
-import pairmatching.utils.Course;
+import pairmatching.service.MakeCrews;
+import pairmatching.service.PairMatching;
+import pairmatching.domain.Course;
 import pairmatching.utils.ErrorMessage;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -11,16 +14,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pairmatching.service.MakeCrews.returnCrew;
 import static pairmatching.view.InputView.*;
 
 public class MatchingController {
-    List<Pair> pairList = new ArrayList<>();
+    List<Pair> pairList;
 
-    public MatchingController() {
+    public MatchingController() throws IOException {
         pairList = new ArrayList<>();
+        new MakeCrews();
     }
 
-    public void run() {
+    public void run() throws IOException {
         boolean gameRun = true;
         while (gameRun) {
             String input = InputView.selectFeaturesView();
@@ -28,7 +33,7 @@ public class MatchingController {
         }
     }
 
-    public boolean selectMenu(String input) {
+    public boolean selectMenu(String input) throws IOException {
         if (input.equals("1")) {  // 페어 매칭
             pairMatching();
             return true;
@@ -38,7 +43,8 @@ public class MatchingController {
             return true;
         }
         if (input.equals("3")) {  // 페어 초기화
-            pairList = new ArrayList<>();
+            pairList.clear();
+            Crew.initializaePair();
             return true;
         }
         if (input.equals("Q")) {  // 종료
@@ -46,46 +52,72 @@ public class MatchingController {
         }
         throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_123Q.getMessage());
     }
-    private boolean checkPair(List<String> input) {
+
+    private boolean checkPair(Course course, Level level, String mission) {
         for (int i = 0; i<pairList.size(); i++) {
-            List<List<String>> tmpList = pairList.get(i).findCrews(Course.BACKEND,input.get(1), input.get(2));
-            if (tmpList!=null) {
-                String retry = retryMatchingView();
-                if (retry.equals("네")) {
-                    System.out.println(pairList.size());
-                    pairList.remove(i);
-                    System.out.println(pairList.size());
-                    return true;
-                }
-                if (retry.equals("아니오")) {
-                    return false;
-                }
+            List<List<String>> preList = pairList.get(i).getCrews(course, level, mission);
+            if (preList!=null) {
+                return retryPair(course, preList, i);
             }
         }
         return true;
     }
 
-    private void pairMatching() {
+    private boolean retryPair(Course course,List<List<String>> preList,int i ) {
+        String retry = retryMatchingView();
+        if (retry.equals("네")) {
+            pairList.remove(i);
+            removeExistPair(course, preList);
+            return true;
+        }
+        if (retry.equals("아니오")) {
+            return false;
+        }
+        throw new IllegalArgumentException(ErrorMessage.NOT_YES_OR_NO.getMessage());
+    }
+
+    private void removeExistPair(Course course, List<List<String>> preList) {
+        for (List<String> nowPair : preList) {
+            Crew[] crews = new Crew[nowPair.size()];
+            for (int i =0; i < nowPair.size(); i++) {
+                crews[i] = returnCrew(course, nowPair.get(i));
+            }
+            removePairCrew(crews);
+        }
+    }
+
+    private void removePairCrew(Crew[] crews) {
+        for (int i = 0; i < crews.length; i++) {
+            for (int j = 0; j < crews.length; j++) {
+                crews[i].removePair(crews[j]);
+            }
+        }
+    }
+
+    private void pairMatching() throws IOException {
         List<String> input = pairMatchingView();
-        try {
-            PairMatching pair = new PairMatching();
-            List<List<String>> pairResult = pair.match(input.get(0),input.get(1),input.get(2));
-            Pair newPair = new Pair(Course.BACKEND, input.get(1), input.get(2), pairResult);
-            pairList.add(newPair);
+        Course course = Course.getName(input.get(0));
+        Level level = Level.getName(input.get(1));
+        String mission = level.getMission(input.get(2));
+        if (checkPair(course, level, mission)) {
+            List<List<String>> pairResult = new PairMatching().run(course, level, mission);
+            pairList.add(new Pair(course, level, mission, pairResult));
             OutputView.ResultPairMatchingView(pairResult);
-        }catch (IOException e) {
-            System.out.println(e);
         }
     }
 
     private void inquiryMatching() {
         List<String> input = inquiryMacthingView();
+        Course course = Course.getName(input.get(0));
+        Level level = Level.getName(input.get(1));
+        String mission = level.getMission(input.get(2));
+
         for (int i = 0; i<pairList.size(); i++) {
-            List<List<String>> tmpList = pairList.get(i).findCrews(Course.BACKEND,input.get(1), input.get(2));
-            if (tmpList!=null) {
-                OutputView.ResultPairMatchingView(tmpList);
+            List<List<String>> findPairList = pairList.get(i).getCrews(course, level, mission);
+            if (findPairList!=null) {
+                OutputView.ResultPairMatchingView(findPairList);
             }
         }
-        // System.out.println("[ERROR] 매칭 이력이 없습니다.");
+        throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_PAIR.getMessage());
     }
 }

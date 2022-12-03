@@ -1,4 +1,6 @@
-package pairmatching.utils;
+package pairmatching.domain;
+
+import pairmatching.utils.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,5 +22,19 @@ public enum Level {
     Level(String name, List<String> missions) {
         this.name = name;
         this.missions = missions;
+    }
+
+    public static Level getName(String input) {
+        return Arrays.stream(Level.values())
+                .filter(l -> input.equals(l.name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LEVEL.getMessage()));
+    }
+
+    public String getMission(String mission) {
+        if (this.missions.contains(mission)) {
+            return mission;
+        }
+        throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_MISSION.getMessage());
     }
 }
