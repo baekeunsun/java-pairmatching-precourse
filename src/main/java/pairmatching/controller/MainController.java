@@ -2,6 +2,9 @@ package pairmatching.controller;
 
 import pairmatching.view.InputView;
 
+import java.util.List;
+
+
 public class MainController {
 
     public void run(){
@@ -14,6 +17,7 @@ public class MainController {
 
     public boolean selectMenu(String input) {
         if (input.equals("1")) {  // 페어 매칭
+            pairMatching();
             return true;
         }
         if (input.equals("2")) {  // 페어 조회
@@ -26,5 +30,9 @@ public class MainController {
             return false;
         }
         throw new IllegalArgumentException();
+    }
+
+    private void pairMatching(){
+        List<String> input = InputView.pairMatchingView();
     }
 }
